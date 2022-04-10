@@ -41,15 +41,15 @@ class Orders:
         stock_available = product[0]["quantityOnHand"]
         stock_threshold = product[0]["reorderThreshold"]
         order_qty = qty
-        returnval = self.check_order_status(
+        res_val = self.check_order_status(
             order_id, product, order_qty, stock_available, stock_threshold
             )
-        if returnval:
-            unfulfilled_orders.append(returnval)
+        if res_val:
+            unfulfilled_orders.append(res_val)
         return unfulfilled_orders
 
     def check_order_status(
-            self, order: int, product: list, qty: int, a: int, b: int
+            self, order: str or int, product: list, qty: int, a: int, b: int
             ) -> int:
         if a > qty:  # if stock is above ordered qty  fulfil the order
             product[0]["quantityOnHand"] = product[0]["quantityOnHand"] - qty
@@ -93,7 +93,7 @@ class Orders:
         return orders_all
 
     @staticmethod
-    def query_to_json(k: str, val: list, domain: list) -> list:
+    def query_to_json(k: any, val: any, domain: list) -> list:
         val = list(filter(lambda x: x[k] == val, domain))
         return val
 
