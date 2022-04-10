@@ -83,7 +83,6 @@ class Orders:
             product_ids_map["productIds"] = prod_arr
             product_ids_map["qty"] = qty_arr
             mapped_array.append(product_ids_map)
-        # print(mapped_array)
         return mapped_array
 
     def get_all_orders(self, input_arr: list, data_dom: list) -> list:
